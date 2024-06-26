@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+<body>
+    <button id="button" style="cursor: pointer;">click me </button>
+    <script>
+
+        // create event listener 
+        document.getElementById('button').addEventListener('click',loadtest);
+        // please dont call the funtion this will cause it to run 
+        // immediatly 
+
+
+        function loadtest(){
+          // create xhr object 
+          var xhr = new XMLHttpRequest();
+          // open the request 
+          xhr.open('GET','notes.txt',true);
+          // send the request 
+          xhr.send();
+          // listen for the response 
+          xhr.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+              document.getElementById('button').innerHTML = this.responseText;
+            }
+          };
+        };
+
+    </script>
+</body>
+</html>

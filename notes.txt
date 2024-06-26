@@ -1,0 +1,4 @@
+first what is ajax ? -> ajax is asynchronous javascript and xml
+its a set of web technologies , send and receive data 
+asynchronous, does not interfere with current webpage 
+json has replaced xml for the most part 
