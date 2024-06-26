@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax 2</title>
+</head>
+<body>
+    <button id="button1">get user</button>
+    <button id="button2">get users</button>
+    <br><br>
+    <h1>User</h1>
+    <div id="user">
+
+    </div>
+    <h1>Users</h1>
+    <div id="users">
+
+    </div>
+    <script>
+        document.getElementById('button1').addEventListener('click',loaduser);
+        document.getElementById('button2').addEventListener('click',loadusers);
+
+        // here is my funtion 
+        function loaduser(){
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','user.json',true)
+            xhr.onload = function(){
+                if(this.status == 200){
+                    const user = JSON.parse(this.responseText);
+                    let output = ''
+                    output += `
+                    <ul>
+                        <li>${user.name}</li>
+                        <li>${user.age}</li>
+                        <li>${user.email}</li>
+                        </ul>
+
+                        `
+                        document.getElementById('user').innerHTML = output;
+
+                }
+            }
+            xhr.send();
+        }
+
+
+        function loadusers(){
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','users.json',true)
+            xhr.onload = function(){
+                if(this.status == 200){
+                    const users = JSON.parse(this.responseText);
+                    let output = ''
+                    users.forEach(function(user){
+                        output += `
+                        <ul>
+                            <li>${user.name}</li>
+                            <li>${user.age}</li>
+                            <li>${user.email}</li>
+                            </ul>
+
+                            `
+                    });
+                    document.getElementById('users').innerHTML = output;
+
+                }
+            }
+            xhr.send();
+        };
+    </script>
+</body>
+</html>
